@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Grand papy bot">
+        <meta name="author" content="Guillaume Sadler">
+        <title>Grand papy bot</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+
+        <!-- Surcharge -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
+        <!-- Google font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}">
+        <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+
+
+    </head>
+
+        {% block content %}{% endblock %}
+
+        <!-- Bootstrap JavaScript -->
+        <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/research.js') }}"></script>
+
+</html>

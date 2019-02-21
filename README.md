@@ -1,5 +1,14 @@
 # PROJECT 7 - GRAND PAPY BOT
 
+
+1: Create new virtual environment with venv
+python3 -m venv venv
+source venv/bin/activate
+
+2: Use pip3 for install flask
+pip3 install flask
+
+
 # Authors
 ** Guillaume Sadler ** - Python student in OpenClassrooms
 

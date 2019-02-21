@@ -1,0 +1,80 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    min-width: 480px;
+}
+
+header{
+    background-color: #7451EB;
+    color: #ffffff;
+    padding: 0.5em;
+    height: 15vh;
+}
+
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height:auto;
+    max-height: 90px;
+}
+
+#container-result{
+    min-height: 65vh;
+    padding: 0.5em;
+}
+
+#container-form{
+    background-color: #A485EF;
+    height: 15vh;
+    padding-top: 2em
+}
+
+footer{
+    height: 5vh;
+    padding: 0.1em;
+    background-color: #7451EB;
+    color: #ffffff;
+}
+
+h1{
+    font-size: 2em;
+    color: #ffffff;
+    padding: 0.8em 1em 1em 2em;
+}
+
+h3.name{
+    font-size: 1em;
+    padding: 0.3em 0.5em 0.5em 0.5em;
+}
+
+a.git_link{
+    margin-top: 0.5em;
+}
+
+#maCarte{
+    height: 200px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+}
