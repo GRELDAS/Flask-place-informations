@@ -1,0 +1,38 @@
+{
+    "ponctuation":{
+        "point": ".",
+        "virgule": ",",
+        "point-virgule": ";",
+        "deux-points": ":",
+        "point-d'interogation": "?",
+        "point-d'exclamation": "!"
+    },
+
+    "determinants":{
+        "le": "le",
+        "la": "la",
+        "l'": "l'",
+        "un": "un",
+        "une": "une",
+        "des": "des"
+    }
+}
+
+articles défini singulier : le, la, l'
+articles défini pluriels : les
+articles indefini singulier : un, une
+articles indefini pluriels : des
+articles partitif singulier : du, de, de la
+
+adjectifs demonstratif singulier : cet, cet, cette
+adjectifs demonstratif pluriel : ces
+adjectifs possessif singulier : mon, ton, son, notre, votre, leur
+adjectifs possessif pluriel : mes, tes, ses, nos, vos, leurs
+adjectifs indéfini singulier : quelque, certain
+adjectifs indéfini pluriel : quelques, certains
+adjectifs numéral : un
+adjectifs numéral : deux, trois, ...
+adjectifs exclamatif singulier : quel, quelle... !
+adjectifs exclamatif pluriel : quels, quelles... !
+adjectifs interrogatif singulier : quel, quelle... ?
+adjectifs interrogatif pluriel : quels, quelles... ?

@@ -1,6 +1,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     min-width: 480px;
+    width: 100%;
 }
 
 header{
@@ -25,7 +26,7 @@ header{
 #container-form{
     background-color: #A485EF;
     height: 15vh;
-    padding-top: 2em
+    padding-top: 2em;
 }
 
 footer{
@@ -51,7 +52,32 @@ a.git_link{
 }
 
 #maCarte{
-    height: 200px;
+    height: 30vh;
+}
+
+#chat{
+    height: 35vh;
+    overflow-y:scroll;
+    padding: 0.5em;
+}
+
+.user_request{
+    background-color: #E0DEE9;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 1em;
+}
+
+.grandpy_response{
+    background-color: #3997FB;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.8em;
+}
+
+#loading{
+    float: none;
+    margin: 0 auto;
 }
 
 /* Large desktops and laptops */
