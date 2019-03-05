@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Grand papy bot">
+        <meta name="author" content="Guillaume Sadler">
+        <title>Grand papy bot</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+
+        <!-- Surcharge -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
+        <!-- Google font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}">
+        <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+
+
+    </head>
+
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- Bootstrap JavaScript -->
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/research.js') }}"></script>
+
+        <script type=text/javascript>
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+
+        <script type=text/javascript>
+
+            // Loading
+            $("#loading").css({display : "none"});
+
+            $(document).ajaxStart(function() {
+
+                // Get user request send to server
+                userRequest = $('#userRequest').val()
+                // Reset form to user browser
+                $('#formulaire')[0].reset()
+                // Write user request in the chat
+                $('#chat').append("<div class=\"user_request\">" + userRequest + "</div>")
+                //
+                $("#formulaire").hide();
+                $('#loading').show()
+
+            }).ajaxStop(function(){
+                $("#loading").hide();
+                $("#formulaire").show()
+            });
+
+            var maCarte = L.map('maCarte').setView([0, 0], 15);
+            var marker = L.marker([0, 0]).addTo(maCarte);
+
+            // Open Street Map tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                attribution: ' <a href="http://www.openstreetmap.org/copyrigh">OpenStreetMap</a>'
+            }).addTo(maCarte);
+
+            var userRequest = $('#userRequest').val()
+
+            $('button').click(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $SCRIPT_ROOT + '/_query',
+                    type: 'POST',
+                    data: $('form').serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+
+                        // Set map view
+                        maCarte.setView([response["address"]["lat"], response["address"]["lon"]], 20);
+
+                        // Set map marker
+                        marker.setLatLng([response["address"]["lat"], response["address"]["lon"]]);
+
+                        $('#chat').append("<div class=\"grandpy_response\"> Bien sûr mon poussin ! La voici : " + response["address"]["display_name"] + "</div>");
+
+                        $('#chat').append("<div class=\"grandpy_response\"> Mais t'ai-je déjà raconté l'histoire de cet endroit ? " + response["address_story"]["extract"] + "</div>");
+                    },
+                    error: function(error){
+                        $('#chat').append("<div class=\"grandpy_response\"> Oups ! Je n'ai pas compris ! </div>");
+                    }
+                                                             
+                });
+
+            });
+
+        </script>
+
+</html>
