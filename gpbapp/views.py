@@ -1,7 +1,8 @@
 """ Views """
 
-from flask import Flask, render_template, session, request, json, jsonify
+from flask import Flask, render_template, session, request, json, jsonify, send_from_directory
 from gpbapp.scripts.grandpy import GrandPy
+import os
 
 import time
 
@@ -27,3 +28,8 @@ def query():
                 time.sleep(2)
 
         return jsonify(address=grandpy.address, address_story=grandpy.address_story)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static/img'),
+                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
