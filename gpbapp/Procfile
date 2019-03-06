@@ -1,1 +1,1 @@
-web: gunicorn gpbapp:app
+web: gunicorn gpbapp:run
