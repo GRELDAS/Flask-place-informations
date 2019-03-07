@@ -25,6 +25,12 @@ class TestParser():
             "keyword" : "OpenClassrooms"
         }
 
+    def sentence_parsing_rescue(self):
+
+        self.parser.sentence_parsing_rescue(sentence="Salut GrandPy ! ... Est-ce que tu connais l'adresse d'OpenClassrooms?")
+
+        assert self.parser.sentence == "openclassrooms"
+
     def test_sentence_empty(self):
 
         self.parser.sentence_parsing(sentence="")
