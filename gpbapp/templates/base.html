@@ -4,7 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <meta name="description" content="Grand papy bot">
         <meta name="author" content="Guillaume Sadler">
         <title>Grand papy bot</title>
@@ -12,8 +13,8 @@
         <!-- Favicon -->
         <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
 
-        <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <!-- Surcharge -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
@@ -21,9 +22,13 @@
         <!-- Google font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
-        <!-- Leaflet -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}">
-        <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+        <!-- Leaflet CDN -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
 
 
     </head>
@@ -33,77 +38,10 @@
         {% endblock %}
 
         <!-- Bootstrap JavaScript -->
-        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
-
-        <script type="text/javascript" src="{{ url_for('static', filename='js/research.js') }}"></script>
-
-        <script type=text/javascript>
-            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-        </script>
-
-        <script type=text/javascript>
-
-            // Loading
-            $("#loading").css({display : "none"});
-
-            $(document).ajaxStart(function() {
-
-                // Get user request send to server
-                userRequest = $('#userRequest').val()
-                // Reset form to user browser
-                $('#formulaire')[0].reset()
-                // Write user request in the chat
-                $('#chat').append("<div class=\"user_request\">" + userRequest + "</div>")
-                //
-                $("#formulaire").hide();
-                $('#loading').show()
-
-            }).ajaxStop(function(){
-                $("#loading").hide();
-                $("#formulaire").show()
-            });
-
-            var maCarte = L.map('maCarte').setView([0, 0], 15);
-            var marker = L.marker([0, 0]).addTo(maCarte);
-
-            // Open Street Map tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                id: 'mapbox.streets',
-                attribution: ' <a href="http://www.openstreetmap.org/copyrigh">OpenStreetMap</a>'
-            }).addTo(maCarte);
-
-            var userRequest = $('#userRequest').val()
-
-            $('button').click(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: $SCRIPT_ROOT + '/_query',
-                    type: 'POST',
-                    data: $('form').serialize(),
-                    dataType: 'json',
-                    success: function(response) {
-
-                        // Set map view
-                        maCarte.setView([response["address"]["lat"], response["address"]["lon"]], 20);
-
-                        // Set map marker
-                        marker.setLatLng([response["address"]["lat"], response["address"]["lon"]]);
-
-                        $('#chat').append("<div class=\"grandpy_response\"> Bien sûr mon poussin ! La voici : " + response["address"]["display_name"] + "</div>");
-
-                        $('#chat').append("<div class=\"grandpy_response\"> Mais t'ai-je déjà raconté l'histoire de cet endroit ? " + response["address_story"]["extract"] + "</div>");
-                    },
-                    error: function(error){
-                        $('#chat').append("<div class=\"grandpy_response\"> Oups ! Je n'ai pas compris ! </div>");
-                    }
-                                                             
-                });
-
-            });
-
-        </script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script> $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; </script>
+        <script src="{{ url_for('static', filename='js/research.js') }}" type=text/javascript></script>
 
 </html>

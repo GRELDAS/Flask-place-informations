@@ -16,7 +16,7 @@ class TestGeoSearcher():
         """ This method test if the instance created is
             of type "GeoSearcher". """
 
-        assert type(self.geosearcher).__name__ == "GeoSearcher"
+        assert type(self.geosearcher) == GeoSearcher
 
     def test_get_address_story(self, monkeypatch):
         """ This method test the result from Media Wiki API.

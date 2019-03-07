@@ -15,9 +15,23 @@ class GrandPy():
             geocoder      (obj ): instance of Geocoder.
             geosearcher   (obj ): instance of GeoSearcher. """
 
-        self.keyword = None
-        self.address = None
-        self.address_story = None
+        self.keyword = {
+            "status" : "",
+            "greeting_form" : "",
+            "sentence_type" : "",
+            "keyword" : ""
+        }
+        self.address = {
+            "status" : "",
+            "display_name" : "",
+            "lat" : 0,
+            "lon" : 0
+        }
+        self.address_story = {
+            "status" : "",
+            "title" : "",
+            "extract" : ""
+        }
         self.parser = Parser()
         self.geocoder = Geocoder()
         self.geosearcher = GeoSearcher()
@@ -29,8 +43,9 @@ class GrandPy():
         #1. Parsing
         self.keyword = self.parser.sentence_parsing(sentence=sentence)
 
-        #2. Geocoding
-        self.address = self.geocoder.reverse_geocoding(keyword=self.keyword)
+        if self.keyword["status"] == "FOUND":
+            #2. Geocoding
+            self.address = self.geocoder.reverse_geocoding(keyword=self.keyword["keyword"])
 
-        #3. Geosearching
-        self.address_story = self.geosearcher.get_address_story(lat=self.address["lat"], lon=self.address["lon"])
+            #3. Geosearching
+            self.address_story = self.geosearcher.get_address_story(lat=self.address["lat"], lon=self.address["lon"])

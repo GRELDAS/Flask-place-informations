@@ -27,7 +27,7 @@ def query():
 
                 time.sleep(2)
 
-        return jsonify(address=grandpy.address, address_story=grandpy.address_story)
+        return jsonify(keyword=grandpy.keyword, address=grandpy.address, address_story=grandpy.address_story)
 
 @app.route('/favicon.ico')
 def favicon():

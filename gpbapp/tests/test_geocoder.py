@@ -17,7 +17,7 @@ class TestGeocoder():
         """ This method test if the instance created is
             of type "Geocoder". """
 
-        assert type(self.geocoder).__name__ == "Geocoder"
+        assert type(self.geocoder) == Geocoder
 
     def test_reverse_geocoding(self, monkeypatch):
         """ This method test the result from nominatim OpenStreetMap API.
