@@ -101,8 +101,7 @@ class Parser():
         return self.request_keyword
 
     def sentence_parsing_rescue(self, sentence=None):
-        """
-        """
+
         self.sentence = sentence
 
         # 2. Remove accent

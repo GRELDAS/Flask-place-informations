@@ -46,7 +46,7 @@ function dispatch(serverResponse){
             }
 
         } else if (serverResponse["address"]["status"] === "NOT FOUND"){
-            createMessage("grandpy", "Je suis désolé, je n'ai pas trouvé d'adresse pour : " + serverResponse["address"]["keyword"]);
+            createMessage("grandpy", "Je suis désolé, je n'ai pas trouvé d'adresse");
         }
 
     }
