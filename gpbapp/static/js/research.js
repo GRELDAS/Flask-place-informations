@@ -94,7 +94,6 @@ $(document).ajaxStart(function() {
     $("#formulaire").show()
 });
 
-
 // Wait 'button' click
 $('button').click(function (e) {
     e.preventDefault();
@@ -115,11 +114,3 @@ $('button').click(function (e) {
     });
 
 });
-
-function tim(){
-    createMessage("grandpy", "Bonjour Tim ! Me fait pas trop souffrir s'il te plait")
-    createMessage("grandpy", "Tiens regarde je t'enmène aux Bahamas !")
-    refreshLeafletMap(25.0170, -77.3118, 10)
-}
-
-tim()
